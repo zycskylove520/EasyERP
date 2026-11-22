@@ -1,62 +1,62 @@
 # EasyERP
 
-A local-first desktop ERP for small businesses, built with NestJS, Vue 3, Electron and SQLite. It covers the full flow from products and partners to quotations, purchase orders, delivery notes, statements, inventory and finance — all running offline with data stored locally.
+一款本地优先（local-first）的桌面 ERP，面向中小企业，基于 NestJS、Vue 3、Electron 和 SQLite 构建。覆盖从基础资料、报价单、订购单、送货单、对帐单到库存与财务的完整业务流程，全部离线运行，数据本地存储。
 
-> No cloud service, no account, no preloaded data. Product categories and company profile are filled in by the user on first use.
+> 无云服务、无账号、无预置数据。品类与公司信息由使用者在首次使用时自行填写。
 
-## Features
+## 功能
 
-- **Base data** — product categories with customizable spec schemas, products, suppliers and customers (supply / sales domains kept separate).
-- **Documents** — quotations, purchase orders, delivery notes and statements with draft / confirm / reject flows, document numbering, print preview and Word / PDF export.
-- **Inventory** — a ledger-based stock model (current stock = sum of ledger deltas), with initial adjustments, receive/consume flows and a full movement history.
-- **Finance** — receivables and payables derived from confirmed statements and orders, with payment records and automatic invalidation when a document is rejected.
-- **Overview** — a dashboard with KPI cards and charts (inventory, sales trends, document status, receivables ranking, stock movements, top products) and low-stock alerts.
+- **基础资料** —— 品类字典（规格模板可自定义）、货品、供货商、客户（供货/销售分域独立）。
+- **业务单据** —— 报价单、订购单、送货单、对帐单，支持草稿/确认/打回流转、单号生成、打印预览、导出 Word / PDF。
+- **库存管理** —— 基于流水账的库存模型（当前库存 = 所有流水增减之和），支持期初/手工调整、入库/出库及完整流水查询。
+- **财务管理** —— 根据已确认的对帐单与订购单计算应收应付，支持收付款登记；单据打回时自动失效。
+- **概览看板** —— KPI 卡片与图表（库存结构、销售趋势、单据状态、客户对帐排行、库存流水、畅货 TOP10）及负库存预警。
 
-## Tech stack
+## 技术栈
 
-| Layer | Technology |
+| 层 | 技术 |
 | --- | --- |
-| Desktop shell | Electron 33 |
-| Backend | NestJS 11 (Node.js, TypeScript) |
-| Frontend | Vue 3 + Vite + Vue Router |
-| Database | SQLite via better-sqlite3 (compiled for Electron ABI 130) |
-| Documents | docx (Word export), Electron `printToPDF` |
-| Charts | ECharts |
-| Package manager | pnpm workspace (monorepo) |
+| 桌面外壳 | Electron 33 |
+| 后端 | NestJS 11（Node.js + TypeScript） |
+| 前端 | Vue 3 + Vite + Vue Router |
+| 数据库 | SQLite（better-sqlite3，按 Electron ABI 130 编译） |
+| 单据导出 | docx（Word）、Electron `printToPDF` |
+| 图表 | ECharts |
+| 包管理 | pnpm workspace（单仓多包） |
 
-The SQLite database lives in Electron's `userData` directory at runtime, so it travels with the installed app and is never part of this repository.
+运行时 SQLite 数据库存放在 Electron 的 `userData` 目录，随安装后的软件走，不纳入本仓库。
 
-## Project structure
+## 目录结构
 
 ```
-apps/api/     NestJS backend (database, modules, document rendering)
-apps/web/     Vue 3 frontend (views, API client, router)
-electron/     Electron main process and preload
-scripts/      dev / build / test scripts
+apps/api/     NestJS 后端（数据库、业务模块、单据渲染）
+apps/web/     Vue 3 前端（页面、API 封装、路由）
+electron/     Electron 主进程与 preload
+scripts/      开发 / 打包 / 测试脚本
 ```
 
-## Getting started
+## 快速开始
 
-The repository includes a self-contained toolchain under `.tools/` (Node + pnpm); commands run through the scripts in `scripts/`.
+仓库在 `.tools/` 中自带工具链（Node + pnpm），命令通过 `scripts/` 下的脚本执行。
 
 ```bash
-# Development (Electron window + Vite hot reload)
+# 开发模式（Electron 窗口 + Vite 热更新）
 bash scripts/dev.sh
 
-# Run backend tests (uses Electron's Node to match the native module ABI)
+# 运行后端测试（用 Electron 的 Node，匹配原生模块的 ABI）
 bash scripts/test.sh
 
-# Build a Windows installer (output in release/)
+# 打包 Windows 安装包（产物在 release/ 目录）
 bash scripts/build-exe.sh
 ```
 
-Prerequisites: Git Bash (MSYS) on Windows. The scripts pin all stores and caches inside the project so nothing is written outside it.
+前置条件：Windows 上的 Git Bash（MSYS）。脚本会把所有 store 与缓存钉在项目目录内，不污染项目外。
 
-## Data & privacy
+## 数据与隐私
 
-- No business or company data is bundled in the source. On first run the database is created empty; the user fills in categories and company info through the UI.
-- The app never sends data to a server — all processing is local.
+- 源码中不捆绑任何业务或公司数据。首次运行时创建空库，品类与公司信息由使用者在界面中填写。
+- 软件不会向任何服务器发送数据，全部在本地处理。
 
-## License
+## 许可证
 
-MIT — see [LICENSE](LICENSE).
+MIT —— 详见 [LICENSE](LICENSE)。
