@@ -1,0 +1,23 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+.env
+.env.local
+
+# 应用数据 / 测试库（运行时生成，随笔带走或重置）
+apps/api/data/
+data/
+.tmp/
+*.db
+*.db-shm
+*.db-wal
+
+# 打包产物（旧版本可能含私有数据，且体积大，不应进仓库）
+release-v6/
+release/
+build/
+.cache/
+.pnpm-store/
+.tools/

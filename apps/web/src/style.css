@@ -1,0 +1,92 @@
+:root {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #1f2937;
+  background: #eef2f3;
+  font-size: 14px;
+}
+
+* { box-sizing: border-box; }
+/* 隐藏主区域与侧边栏的滚动条（仍可滚动，仅不显示滚动条）。
+   不用通配 *::-webkit-scrollbar，避免影响输入框/下拉的命中测试。 */
+html, body, .main, .sidebar { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar,
+.main::-webkit-scrollbar, .sidebar::-webkit-scrollbar { width: 0; height: 0; display: none; }
+body { margin: 0; }
+a { color: inherit; text-decoration: none; }
+
+.layout { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 240px; background: #111827; color: #d1d5db; flex-shrink: 0;
+  padding: 20px 0; position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.brand { font-size: 18px; font-weight: 700; color: #fff; padding: 0 20px 20px; }
+.nav-group { margin-bottom: 16px; }
+.nav-group-title { font-size: 11px; color: #6b7280; padding: 0 20px 6px; letter-spacing: 1px; }
+.nav-item {
+  display: block; padding: 9px 20px; color: #d1d5db; cursor: pointer;
+}
+.nav-item:hover { background: #1f2937; color: #fff; }
+.nav-item.active { background: #2563eb; color: #fff; }
+.nav-parent-btn { display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.nav-caret { font-size: 10px; color: #9ca3af; }
+.nav-children { padding-left: 14px; }
+.nav-child { font-size: 13px; padding-left: 26px; }
+
+/* 右侧内容区：护眼浅灰绿背景，替代纯白 */
+.main {
+  flex: 1; min-width: 0; padding: 24px 32px;
+  background: #eef2f3; min-height: 100vh;
+}
+.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.page-title { font-size: 22px; font-weight: 600; margin: 0; }
+
+.card {
+  background: #fff; border-radius: 8px; padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08); margin-bottom: 20px;
+}
+
+table.data { width: 100%; border-collapse: collapse; }
+table.data th, table.data td {
+  padding: 9px 12px; text-align: left; border-bottom: 1px solid #e5e7eb;
+}
+table.data th { background: #f9fafb; color: #6b7280; font-weight: 500; font-size: 12px; }
+table.data tr:hover td { background: #f9fafb; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 7px 14px; border: 1px solid #d1d5db; border-radius: 6px;
+  background: #fff; color: #374151; cursor: pointer; font-size: 13px;
+}
+.btn:hover { border-color: #9ca3af; }
+.btn-primary { background: #2563eb; border-color: #2563eb; color: #fff; }
+.btn-primary:hover { background: #1d4ed8; }
+.btn-danger { color: #dc2626; }
+.btn-sm { padding: 4px 9px; font-size: 12px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.field { margin-bottom: 14px; }
+.field label { display: block; margin-bottom: 5px; color: #6b7280; font-size: 12px; }
+input, select, textarea {
+  width: 100%; padding: 8px 10px; border: 1px solid #d1d5db; border-radius: 6px;
+  font-size: 14px; font-family: inherit;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: #2563eb; }
+textarea { resize: vertical; min-height: 60px; }
+.row { display: flex; gap: 12px; }
+.row > * { flex: 1; }
+
+.badge { padding: 2px 8px; border-radius: 10px; font-size: 12px; }
+.badge-DRAFT { background: #f3f4f6; color: #6b7280; }
+.badge-CONFIRMED { background: #dbeafe; color: #1d4ed8; }
+.badge-REJECTED { background: #fee2e2; color: #dc2626; }
+
+.error { color: #dc2626; background: #fef2f2; padding: 10px 14px; border-radius: 6px; margin-bottom: 16px; }
+.muted { color: #9ca3af; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* 打印时不显示侧边栏、页面操作条等界面元素，只留单据本身 */
+@media print {
+  .sidebar, .no-print { display: none !important; }
+  .layout, .main { display: block; margin: 0; padding: 0; }
+  .card, .error { box-shadow: none; }
+}

@@ -1,0 +1,66 @@
+{
+  "name": "easyerp",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EasyERP — 内置后端与本地数据库的 Electron 桌面 ERP",
+  "author": "EasyERP Team",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "build": "pnpm -r build",
+    "rebuild:native": "electron-rebuild -f -w better-sqlite3",
+    "dev": "bash scripts/dev.sh",
+    "dist": "bash scripts/build-exe.sh",
+    "test": "bash scripts/test.sh"
+  },
+  "build": {
+    "appId": "com.easyerp.desktop",
+    "productName": "EasyERP",
+    "icon": "build/icon.png",
+    "directories": {
+      "output": "release-v6"
+    },
+    "files": [
+      "electron/**/*",
+      "build/icon.png",
+      "apps/api/dist/**/*",
+      "apps/web/dist/**/*",
+      "package.json",
+      "node_modules/**/*",
+      "apps/api/node_modules/**/*"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "**/node_modules/better-sqlite3/**/*",
+      "apps/web/dist/**/*"
+    ],
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] }
+      ],
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
+    "better-sqlite3": "^11.10.0",
+    "docx": "^9.16.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.2.1",
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  }
+}

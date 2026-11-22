@@ -1,0 +1,10 @@
+packages:
+  - apps/*
+
+onlyBuiltDependencies:
+  - esbuild
+  # electron 本体与 sqlite 原生模块都需要 postinstall 构建
+  - electron
+  - better-sqlite3
+
+scriptShell: bash

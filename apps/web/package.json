@@ -1,0 +1,26 @@
+{
+  "name": "@easyerp/web",
+  "version": "0.0.1",
+  "description": "EasyERP frontend (Vue3 + Vite)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint \"src/**/*.{ts,vue}\""
+  },
+  "dependencies": {
+    "echarts": "^6.1.0",
+    "vue": "^3.5.13",
+    "vue-router": "^4.6.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5",
+    "vitest": "^2.1.8",
+    "vue-tsc": "^2.2.0"
+  }
+}
