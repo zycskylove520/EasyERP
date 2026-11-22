@@ -28,4 +28,4 @@ ELECTRON_MIRROR="https://npmmirror.com/mirrors/electron/" \
   "$NODE" "$EB_CLI" --win --x64
 
 echo ""
-echo "完成。安装包在 $ROOT/release-v6/"
+echo "完成。安装包在 $ROOT/release/"

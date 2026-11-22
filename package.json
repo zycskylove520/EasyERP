@@ -17,7 +17,7 @@
     "productName": "EasyERP",
     "icon": "build/icon.png",
     "directories": {
-      "output": "release-v6"
+      "output": "release"
     },
     "files": [
       "electron/**/*",

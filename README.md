@@ -46,7 +46,7 @@ bash scripts/dev.sh
 # Run backend tests (uses Electron's Node to match the native module ABI)
 bash scripts/test.sh
 
-# Build a Windows installer (output in release-v6/)
+# Build a Windows installer (output in release/)
 bash scripts/build-exe.sh
 ```
 

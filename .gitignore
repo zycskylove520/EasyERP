@@ -14,8 +14,7 @@ data/
 *.db-shm
 *.db-wal
 
-# 打包产物（旧版本可能含私有数据，且体积大，不应进仓库）
-release-v6/
+# 打包产物（体积大，且为运行时生成，不应进仓库）
 release/
 build/
 .cache/

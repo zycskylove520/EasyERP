@@ -26,7 +26,7 @@
 - **结论**：彻底消除需购买 EV/OV 代码签名证书（商业，年费），无法凭空生成。给用户三选项：①买证书签名（唯一根治）；②用户点"更多信息→仍要运行"手动放行（零成本）；③保持现状。已如实说明，未擅自购买。
 
 ## 验证
-- typecheck/build 过；74 测试全过；重新打包 exe（release-v6，85M）。
+- typecheck/build 过；74 测试全过；重新打包 exe（release，85M）。
 - 打包版 Electron 实测：健康200、供货商 businessTypes 正确、首页/PDF chunk 200、preload.cjs 在 asar 内。
 - 无 GUI 环境无法验证：输入框实际可输入、PDF 保存对话框、SmartScreen 行为——需用户在真机确认。
 
